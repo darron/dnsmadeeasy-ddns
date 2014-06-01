@@ -1,4 +1,4 @@
-FROM octohost/ubuntu
+FROM octohost/ubuntu:12.04
 
 RUN apt-get install -y wget
 
