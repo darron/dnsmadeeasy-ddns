@@ -12,7 +12,7 @@
 # Need to set several environmental variables in order for this to work:
 #
 # DNS_RECORD - the record to check.
-# DNS_SERVER - the server to check against. 
+# DNS_SERVER - the server to check against.
 # DME_USER - your username at DNS Made Easy.
 # DME_PASS - the password for that dns record.
 # DME_ID - the ID for that dns record.
@@ -34,7 +34,7 @@ do
   if [ "$CURRENT_DNS_IP" != "$IP_ADDRESS" ]; then
     URL="https://www.dnsmadeeasy.com/servlet/updateip?username=$DME_USER&password=$DME_PASS&id=$DME_ID&ip=$IP_ADDRESS"
     echo "URL: $URL"
-    if wget -qO- "$URL" | grep success ; then
+    if wget -qO- "$URL" --no-check-certificate | grep success ; then
     	echo "DNS Record Updated Successfully" > /proc/self/fd/1
     else
     	echo "Problem updating DNS record." > /proc/self/fd/1
