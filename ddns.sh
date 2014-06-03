@@ -11,7 +11,8 @@
 #
 # Need to set several environmental variables in order for this to work:
 #
-# DNS_RECORD - the record to check against.
+# DNS_RECORD - the record to check.
+# DNS_SERVER - the server to check against. 
 # DME_USER - your username at DNS Made Easy.
 # DME_PASS - the password for that dns record.
 # DME_ID - the ID for that dns record.
@@ -25,7 +26,7 @@ do
   IP_ADDRESS=$(wget -qO- http://ipv4.icanhazip.com)
 
   # Get the record we are supposed to check.
-  DIG_COMMAND="dig $DNS_RECORD +short"
+  DIG_COMMAND="dig $DNS_RECORD +short @$DNS_SERVER"
   CURRENT_DNS_IP=$($DIG_COMMAND)
 
   echo "Current IP: $IP_ADDRESS. $DNS_RECORD reports: $CURRENT_DNS_IP."
