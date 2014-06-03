@@ -29,8 +29,7 @@ do
   CURRENT_DNS_IP=$($DIG_COMMAND)
 
   if [ "$CURRENT_DNS_IP" != "$IP_ADDRESS" ]; then
-    URL="https://www.dnsmadeeasy.com/servlet/updateip?username=$DME_USER\&password=$DME_PASS\&id=$DME_ID\&ip=$IP_ADDRESS"
-    echo "URL: $URL"
+    URL="https://www.dnsmadeeasy.com/servlet/updateip?username=$DME_USER&password=$DME_PASS&id=$DME_ID&ip=$IP_ADDRESS"
     if wget -q -O /proc/self/fd/1 $URL | grep success > /dev/null; then
     	echo "DNS Record Updated Successfully" > /proc/self/fd/1
     else
