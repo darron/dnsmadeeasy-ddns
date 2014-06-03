@@ -1,6 +1,6 @@
 FROM octohost/ubuntu:13.10
 
-RUN apt-get update && apt-get install -y wget
+RUN apt-get update && apt-get install -y wget dnsutils
 
 ADD ./ddns.sh /ddns.sh
 
