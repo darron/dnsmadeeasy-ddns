@@ -28,8 +28,9 @@ do
   # Get the record we are supposed to check.
   DIG_COMMAND="dig $DNS_RECORD +short @$DNS_SERVER"
   CURRENT_DNS_IP=$($DIG_COMMAND)
+  DATE=$(date)
 
-  echo "Current IP: $IP_ADDRESS. $DNS_RECORD reports: $CURRENT_DNS_IP."
+  echo "$DATE: Current IP: $IP_ADDRESS. $DNS_RECORD reports: $CURRENT_DNS_IP."
 
   if [ "$CURRENT_DNS_IP" != "$IP_ADDRESS" ]; then
     URL="https://www.dnsmadeeasy.com/servlet/updateip?username=$DME_USER&password=$DME_PASS&id=$DME_ID&ip=$IP_ADDRESS"
