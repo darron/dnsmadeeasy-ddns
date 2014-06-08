@@ -17,6 +17,8 @@
 # DME_PASS - the password for that dns record.
 # DME_ID - the ID for that dns record.
 # INTERVAL - time between checks
+# HIPCHAT_API_TOKEN
+# HIPCHAT_ROOM_ID
 
 while true
 do
@@ -33,6 +35,10 @@ do
   echo "$DATE: Current IP: $IP_ADDRESS. $DNS_RECORD reports: $CURRENT_DNS_IP."
 
   if [ "$CURRENT_DNS_IP" != "$IP_ADDRESS" ]; then
+    if [[ "$HIPCHAT_API_TOKEN" != "" && "$HIPCHAT_ROOM_ID" != "" ]]; then
+      HIPCHAT="room_id=$HIPCHAT_ROOM_ID&from=DDNS&message=Monitored+IP+Address+Changed:+$IP_ADDRESS&color=green"
+      wget -qO- "https://api.hipchat.com/v1/rooms/message?auth_token=$HIPCHAT_API_TOKEN&format=json&$HIPCHAT" --no-check-certificate > /dev/null
+    fi
     URL="https://www.dnsmadeeasy.com/servlet/updateip?username=$DME_USER&password=$DME_PASS&id=$DME_ID&ip=$IP_ADDRESS"
     if wget -qO- "$URL" --no-check-certificate | grep success > /dev/null; then
     	echo "DNS Record Updated Successfully" > /proc/self/fd/1
