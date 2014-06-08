@@ -36,7 +36,7 @@ do
 
   if [ "$CURRENT_DNS_IP" != "$IP_ADDRESS" ]; then
     if [[ "$HIPCHAT_API_TOKEN" != "" && "$HIPCHAT_ROOM_ID" != "" ]]; then
-      HIPCHAT="room_id=$HIPCHAT_ROOM_ID&from=DDNS&message=Monitored+IP+Address+Changed:+$IP_ADDRESS&color=green"
+      HIPCHAT="room_id=$HIPCHAT_ROOM_ID&from=DDNS&message=Monitored+IP+Address+Changed:+$IP_ADDRESS&color=red"
       wget -qO- "https://api.hipchat.com/v1/rooms/message?auth_token=$HIPCHAT_API_TOKEN&format=json&$HIPCHAT" --no-check-certificate > /dev/null
     fi
     URL="https://www.dnsmadeeasy.com/servlet/updateip?username=$DME_USER&password=$DME_PASS&id=$DME_ID&ip=$IP_ADDRESS"
