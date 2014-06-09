@@ -14,4 +14,6 @@ HIPCHAT_API_TOKEN - API token to notify Hipchat.
 HIPCHAT_ROOM_ID - room id to post the message in Hipchat.
 ```
 
-To pull an already existing container: `docker pull darron/ddns`
+To pull an already existing container: `docker pull darron/dnsmadeeasy-ddns`
+
+Listed on the Docker Index at [https://registry.hub.docker.com/u/darron/dnsmadeeasy-ddns/](https://registry.hub.docker.com/u/darron/dnsmadeeasy-ddns/)
